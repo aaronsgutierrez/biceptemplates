@@ -1,0 +1,125 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [
+        {
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "apiVersion": "2017-10-01",
+            "location": "South Central US",
+            "name": "DevVnetDefaultNsg",
+            "tags": {
+                "financial" : "azure-cloud"
+            },
+            "properties": {
+                "securityRules": [
+                    {
+                        "name": "RDP",
+                        "properties": {
+                            "protocol": "TCP",
+                            "description": "RDP 3389, FOver Tst",
+                            "sourceAddressPrefix": "*",
+                            "sourcePortRange": "*",
+                            "destinationAddressPrefix": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefixes": null,
+                            "sourcePortRanges": null,
+                            "sourceApplicationSecurityGroups": null,
+                            "destinationAddressPrefixes": null,
+                            "destinationPortRanges": null,
+                            "destinationApplicationSecurityGroups": null,
+                            "access": "Allow",
+                            "priority": 200,
+                            "direction": "Inbound"
+                            }
+                    },
+                    {
+                        "name": "Azure-Search-In",
+                        "properties": {
+                            "protocol": "Tcp",
+                            "description": "Nsg to support Az Search Svc",
+                            "sourceAddressPrefix": "192.168.1.1",
+                            "sourcePortRange": "*",
+                            "destinationAddressPrefix": "192.168.2.1",
+                            "destinationPortRange": "443",
+                            "sourceAddressPrefixes": null,
+                            "sourcePortRanges": null,
+                            "sourceApplicationSecurityGroups": null,
+                            "destinationAddressPrefixes": null,
+                            "destinationPortRanges": null,
+                            "destinationApplicationSecurityGroups": null,
+                            "access": "Allow",
+                            "priority": 500,
+                            "direction": "Inbound"
+                            }
+                            
+                    },
+                     {
+                        "name": "Azure-Search-Out",
+                        "properties": {
+                            "protocol": "Tcp",
+                            "description": "Nsg to support Az Search Svc",
+                            "sourceAddressPrefix": "192.168.1.1",
+                            "sourcePortRange": "*",
+                            "destinationAddressPrefix": "192.168.2.1",
+                            "destinationPortRange": "443",
+                            "sourceAddressPrefixes": null,
+                            "sourcePortRanges": null,
+                            "sourceApplicationSecurityGroups": null,
+                            "destinationAddressPrefixes": null,
+                            "destinationPortRanges": null,
+                            "destinationApplicationSecurityGroups": null,
+                            "access": "Allow",
+                            "priority": 200,
+                            "direction": "Outbound"
+                            }
+                            
+                    },
+                     {
+                        "name": "Allow-OutboundAzStorage",
+                        "properties": {
+                            "protocol": "Tcp",
+                            "description": "",
+                            "sourceAddressPrefix": "192.168.1.1",
+                            "sourcePortRange": "*",
+                            "destinationAddressPrefix": "192.168.2.1",
+                            "destinationPortRange": "80",
+                            "sourceAddressPrefixes": null,
+                            "sourcePortRanges": null,
+                            "sourceApplicationSecurityGroups": null,
+                            "destinationAddressPrefixes": null,
+                            "destinationPortRanges": null,
+                            "destinationApplicationSecurityGroups": null,
+                            "access": "Allow",
+                            "priority": 400,
+                            "direction": "Outbound"
+                            }
+                            
+                    },
+                     {
+                        "name": "Allow-OutboundAzStorage1",
+                        "properties": {
+                            "protocol": "Tcp",
+                            "description": "",
+                            "sourceAddressPrefix": "192.168.1.1",
+                            "sourcePortRange": "*",
+                            "destinationAddressPrefix": "192.168.2.1",
+                            "destinationPortRange": "80",
+                            "sourceAddressPrefixes": null,
+                            "sourcePortRanges": null,
+                            "sourceApplicationSecurityGroups": null,
+                            "destinationAddressPrefixes": null,
+                            "destinationPortRanges": null,
+                            "destinationApplicationSecurityGroups": null,
+                            "access": "Allow",
+                            "priority": 401,
+                            "direction": "Outbound"
+                            }
+                            
+                    }
+
+                ]
+            }
+
+        }
+    ]
+}
